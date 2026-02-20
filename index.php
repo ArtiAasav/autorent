@@ -44,7 +44,7 @@
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Otsi" aria-label="Search"/>
+        <input class="form-control me-2" type="search" placeholder="Otsi" aria-label="Search" name="search"/>
         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
       </form>
     </div>
@@ -70,11 +70,30 @@
 <!-- hero -->
 
 <?php
-$paring = 'SELECT * FROM cars LIMIT 8';
+// Alert kast, kui autot ei leitud
+$paring = 'SELECT * FROM cars';
+if (isset($_GET["search"])) {
+  $otsi = $_GET['search'];
+  $paring .= ' WHERE mark LIKE "%'.$otsi.'%"';
+}
+
+$paring .= ' LIMIT 8';
 $valjund = mysqli_query($yhendus, $paring);
 
 ?>
 <div class="container">
+<?php
+if ($result=mysqli_query($yhendus,$paring)) {
+    $rowcount=mysqli_num_rows($result);
+    if ($rowcount == 0) {
+      echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Tulemusi ei leitud</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+    }
+  }
+  ?>
+
     <div class="row">
         <?php
         while($rida = mysqli_fetch_row($valjund)){
@@ -82,7 +101,7 @@ $valjund = mysqli_query($yhendus, $paring);
         <!-- kaart -->
         <div class="col-sm-3">
             <div class="card my-2" style="width: 18rem;">
-  <img src="https://picsum.photos/600/350" class="card-img-top" alt="auto">
+  <img src="https://loremflickr.com/600/350/<?php echo $rida[1]; ?>" class="card-img-top" alt="auto">
   <div class="card-body">
     <div class="row">
         <div class="col"><h5 class="card-title"><?php echo $rida[1]; ?></h5></div>
@@ -114,6 +133,8 @@ $valjund = mysqli_query($yhendus, $paring);
 </nav>
 <!-- leheküljenumrbid -->
 </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>
