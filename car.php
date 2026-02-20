@@ -53,71 +53,28 @@
 <!-- menüü -->
 
 <?php
-// Alert kast, kui autot ei leitud
-$paring = 'SELECT * FROM cars';
-if (isset($_GET["search"])) {
-  $otsi = $_GET['search'];
-  $paring .= ' WHERE mark LIKE "%'.$otsi.'%"';
-}
 
-$paring .= ' LIMIT 8';
+$paring = 'SELECT * FROM cars WHERE id='.$_GET["car_id"].'';
 $valjund = mysqli_query($yhendus, $paring);
+$rida = mysqli_fetch_row($valjund);
+var_dump($rida);
 
 ?>
-<div class="container">
-<?php
-if ($result=mysqli_query($yhendus,$paring)) {
-    $rowcount=mysqli_num_rows($result);
-    if ($rowcount == 0) {
-      echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Tulemusi ei leitud</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-    }
-  }
-  ?>
 
-    <div class="row">
-        <?php
-        while($rida = mysqli_fetch_row($valjund)){
-        ?>
-        <!-- kaart -->
-        <div class="col-sm-3">
-            <div class="card my-2" style="width: 18rem;">
-  <img src="https://loremflickr.com/600/350/<?php echo $rida[1]; ?>" class="card-img-top" alt="auto">
-  <div class="card-body">
-    <div class="row">
-        <div class="col"><h5 class="card-title"><?php echo $rida[1]; ?></h5></div>
-        <div class="col text-end"><i class="bi bi-heart"></i></div>
+<!-- autode info -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1>Auto nimi</h1>
+      
+
     </div>
-    <p class="card-text text-secondary"><?php echo $rida[2]; ?></p>
-    <p class="card-text">
-    Mootor: <?php echo $rida[3]; ?><br><br>
-    Kütus: <?php echo $rida[4]; ?><br><br>
-    Hind: <?php echo $rida[5]; ?><br></p>
-    <a href="#" class="btn btn-dark w-100">Rendi</a>
+    <div class="col-sm-6"></div>
   </div>
-</div>
-</div>
-<!-- kaart -->
- <?php
-}
- ?>
-</div>
-<!-- leheküljenumbrid -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination py-4 justify-content-center">
-    <li class="page-item disabled"><a class="page-link link-dark border-secondary" href="#">Eelmine</a></li>
-    <li class="page-item active"><a class="page-link bg-dark text-white border-dark" href="#">1</a></li>
-    <li class="page-item"><a class="page-link link-dark border-secondary" href="#">2</a></li>
-    <li class="page-item"><a class="page-link link-dark border-secondary" href="#">3</a></li>
-    <li class="page-item"><a class="page-link link-dark border-secondary" href="#">Järgmine</a></li>
-  </ul>
-</nav>
-<!-- leheküljenumrbid -->
-</div>
 
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
