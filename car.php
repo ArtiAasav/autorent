@@ -52,23 +52,6 @@
 </nav>
 <!-- menüü -->
 
-<!-- hero -->
-    <div class="container py-4">
-      <div class="hero bg-body-tertiary p-4">
-        <div class="row h-100">
-            <div class="col-sm-6">
-                <h1>Rendi<br>auto<br>soodsalt</h1>
-                <p class="text-secondary">Lai valik autosid igaks olukorraks</p>
-                <button class="btn btn-dark">Vaata autosid</button>
-            </div>
-            <div class="col-sm-6">
-                <img class="image-fluid h-100" src="https://picsum.photos/600/250" alt="autopilt">
-            </div>
-        </div>
-      </div>
-    </div>
-<!-- hero -->
-
 <?php
 // Alert kast, kui autot ei leitud
 $paring = 'SELECT * FROM cars';
