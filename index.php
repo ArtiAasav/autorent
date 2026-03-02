@@ -94,33 +94,33 @@ if ($result=mysqli_query($yhendus,$paring)) {
   }
   ?>
 
-    <div class="row">
-        <?php
-        while($rida = mysqli_fetch_row($valjund)){
-        ?>
-        <!-- kaart -->
-        <div class="col-sm-3">
-            <div class="card my-2" style="width: 18rem;">
-  <img src="https://loremflickr.com/600/350/<?php echo $rida[1]; ?>" class="card-img-top" alt="auto">
-  <div class="card-body">
-    <div class="row">
-        <div class="col"><h5 class="card-title"><?php echo $rida[1]; ?></h5></div>
-        <div class="col text-end"><i class="bi bi-heart"></i></div>
+  <div class="row">
+    <?php
+while($rida = mysqli_fetch_row($valjund)){ 
+    ?>
+    <!-- kaart --> 
+    <div class="col-sm-3">
+      <div class="card my-2" style="width: 19rem;">
+        <img src="https://loremflickr.com/600/350/<?php echo $rida[1]; ?>" class="card-img-top" alt="auto">
+        <div class="card-body">
+          <div class="row">
+            <div class="col"><h5 class="card-title"><?php echo $rida[1]; ?></h5></div>
+            <div class="col text-end"><i class="bi bi-heart"></i></div>
+          </div>
+          
+          <p class="card-text text-secondary"><?php echo $rida[2]; ?></p>
+          <p class="card-text">
+          Mootor: <?php echo $rida[3]; ?><br>
+          Kütus: <?php echo $rida[4]; ?><br>
+          Hind: <?php echo $rida[5]; ?>€/päev</p>
+          <a href="car.php?car_id=<?php echo $rida[0] ?>" class="btn btn-dark w-100">Rendi</a>
+        </div>
+      </div>
     </div>
-    <p class="card-text text-secondary"><?php echo $rida[2]; ?></p>
-    <p class="card-text">
-    Mootor: <?php echo $rida[3]; ?><br><br>
-    Kütus: <?php echo $rida[4]; ?><br><br>
-    Hind: <?php echo $rida[5]; ?><br></p>
-    <a href="#" class="btn btn-dark w-100">Rendi</a>
-  </div>
-</div>
-</div>
-<!-- kaart -->
- <?php
-}
- ?>
-</div>
+    <!-- /kaart -->
+   <?php } ?>
+
+ </div>
 <!-- leheküljenumbrid -->
 <nav aria-label="Page navigation example">
   <ul class="pagination py-4 justify-content-center">

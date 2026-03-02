@@ -1,80 +1,75 @@
-<?php include("config.php");?>
-
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="et">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <style>
-      .hero {
-        height: 300px;
-        /* background-image: url("https://picsum.photos/1200/400");
-        background-size: cover;
-        background-position: center; */
-      }
-    </style>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auto detail</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <!-- menüü -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">Autorent</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Avaleht</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Autod</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Hinnad</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kontakt</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Avaleht</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Autod</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Hinnad</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Otsi" aria-label="Search" name="search"/>
-        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+      <form class="d-flex">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Otsi autot">
+        <button class="btn btn-outline-secondary btn-sm">🔍</button>
       </form>
     </div>
   </div>
 </nav>
-<!-- menüü -->
 
-<?php
+<!-- SISU -->
+<div class="container my-5">
 
-$paring = 'SELECT * FROM cars WHERE id='.$_GET["car_id"].'';
-$valjund = mysqli_query($yhendus, $paring);
-$rida = mysqli_fetch_row($valjund);
-var_dump($rida);
+  <div class="card shadow-sm">
+    <div class="row g-0">
 
-?>
+      <!-- Pilt -->
+      <div class="col-md-6">
+        <img src="https://loremflickr.com/800/500/audi"
+             class="img-fluid h-100 object-fit-cover rounded-start"
+             alt="Auto pilt">
+      </div>
 
-<!-- autode info -->
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-sm-6">
-      <h1>Auto nimi</h1>
-      
+      <!-- Info -->
+      <div class="col-md-6">
+        <div class="card-body p-4">
+
+          <h3 class="card-title mb-3"><?php echo $rida[]?></h3>
+          <p class="text-muted mb-4"><?php echo $rida[] echo $rida[]?></p>
+
+          <ul class="list-unstyled mb-4">
+            <li><strong>Mootor:</strong><?php echo $rida[]?></li>
+            <li><strong>Kütus:</strong><?php echo $rida[]?></li>
+            <li><strong>Käigukast:</strong><?php echo $rida[]?></li>
+            <li><strong>Kohad:</strong><?php echo $rida[]?></li>
+          </ul>
+
+          <h4 class="mb-3">250 € / päev</h4>
+
+          <button class="btn btn-dark w-100">Rendi</button>
+
+        </div>
+      </div>
 
     </div>
-    <div class="col-sm-6"></div>
   </div>
 
 </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
