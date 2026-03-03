@@ -47,6 +47,7 @@
         <input class="form-control me-2" type="search" placeholder="Otsi" aria-label="Search" name="search"/>
         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
       </form>
+      <button class="btn btn-success ms-5" onclick="window.location.href='admin.php'">Login</button>
     </div>
   </div>
 </nav>

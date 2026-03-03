@@ -1,3 +1,5 @@
+<?php include("config.php");?>
+
 <!doctype html>
 <html lang="et">
 <head>
@@ -34,6 +36,12 @@
 <!-- SISU -->
 <div class="container my-5">
 
+<?php
+$id=$_GET["car_id"];
+$paring = 'SELECT * FROM cars WHERE id='.$id.'';
+$valjund = mysqli_query($yhendus, $paring);
+$rida = mysqli_fetch_row($valjund);
+?>
   <div class="card shadow-sm">
     <div class="row g-0">
 
@@ -48,17 +56,18 @@
       <div class="col-md-6">
         <div class="card-body p-4">
 
-          <h3 class="card-title mb-3"><?php echo $rida[]?></h3>
-          <p class="text-muted mb-4"><?php echo $rida[] echo $rida[]?></p>
+          <h3 class="card-title mb-3"><?php echo $rida[1]." ". $rida[2] ?></h3>
+          <p class="text-muted mb-4"><?php echo $rida[9]?></p>
 
           <ul class="list-unstyled mb-4">
-            <li><strong>Mootor:</strong><?php echo $rida[]?></li>
-            <li><strong>Kütus:</strong><?php echo $rida[]?></li>
-            <li><strong>Käigukast:</strong><?php echo $rida[]?></li>
-            <li><strong>Kohad:</strong><?php echo $rida[]?></li>
+            <li><strong>Mootor: </strong><?php echo $rida[3]?></li>
+            <li><strong>Kütus: </strong><?php echo $rida[4]?></li>
+            <li><strong>Käigukast: </strong><?php echo $rida[11]?></li>
+            <li><strong>Kohad: </strong><?php echo $rida[10]?></li>
+            <li><strong>Staatus: </strong><?php echo $rida[8]?></li>
           </ul>
 
-          <h4 class="mb-3">250 € / päev</h4>
+          <h4 class="mb-3"><?php echo $rida[5]?> € / päev</h4>
 
           <button class="btn btn-dark w-100">Rendi</button>
 
