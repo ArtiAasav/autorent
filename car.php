@@ -20,14 +20,14 @@
 
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="#">Avaleht</a></li>
+        <li class="nav-item"><a class="nav-link" href='index.php'>Avaleht</a></li>
         <li class="nav-item"><a class="nav-link active" href="#">Autod</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Hinnad</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
       </ul>
       <form class="d-flex">
         <input class="form-control form-control-sm me-2" type="search" placeholder="Otsi autot">
-        <button class="btn btn-outline-secondary btn-sm">🔍</button>
+        <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-search"></i></button>
       </form>
     </div>
   </div>
@@ -79,6 +79,7 @@ $rida = mysqli_fetch_row($valjund);
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
 </body>
 </html>
