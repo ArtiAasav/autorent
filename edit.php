@@ -50,9 +50,29 @@ if(!empty($_GET["updateid"])){
         $year = $_GET["year"];
         $seats = $_GET["seats"];
         $transmission = $_GET["transmission"];
-   $paring = "UPDATE cars SET mark = '.$mark.', model = '.$model.', engine = '.$engine.', fuel = '.$fuel.', price = '.$price.', image = '.$image.', description = '.$description.', status = '.$status.', year = '.$year.', seats = '.$seats.', transmission = '.$transmission.' WHERE cars.id ='.$updateid.'";
-   $valjund = mysqli_query($yhendus, $paring);
-//    header("Location: admin.php");
+//    $paring = "UPDATE cars SET mark = '.$mark.', model = '.$model.', engine = '.$engine.', fuel = '.$fuel.', price = '.$price.', image = '.$image.', description = '.$description.', status = '.$status.', year = '.$year.', seats = '.$seats.', transmission = '.$transmission.' WHERE cars.id ='.$updateid.'";
+        $paring = "UPDATE cars SET 
+        mark = '$mark',
+        model = '$model',
+        engine = '$engine',
+        fuel = '$fuel',
+        price = '$price',
+        image = '$image',
+        description = '$description',
+        status = '$status',
+        year = '$year',
+        seats = '$seats',
+        transmission = '$transmission'
+        WHERE cars.id = '$updateid'";
+
+
+$valjund = mysqli_query($yhendus, $paring);
+   
+    if(!$valjund){
+        die(mysqli_error($yhendus));
+    }
+
+    header("Location: admin.php");
 }
 
 if (!empty($_GET["id"])){
@@ -62,7 +82,7 @@ $paring = "SELECT * FROM cars WHERE id=".$id."";
 $valjund = mysqli_query($yhendus, $paring);
 $rida = mysqli_fetch_row($valjund);
 } else {
-//   header("Location: admin.php");
+  header("Location: admin.php");
 }
 
 ?>

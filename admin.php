@@ -1,4 +1,15 @@
-<?php include("config.php"); ?>
+<?php include("config.php");
+
+$hashed_password = password_hash("admin", PASSWORD_DEFAULT);
+
+session_start();
+
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="et">
@@ -30,7 +41,13 @@
           <a class="nav-link" href="#">Kasutajad</a>
         </li>
       </ul>
-      <button class="btn btn-danger" onclick="window.location.href='index.php'">Logout</button>
+      <span class="me-3 text-success fw-semibold">
+    <i class="bi bi-shield-lock"></i> Admin sisse logitud
+</span>
+
+<button class="btn btn-danger" onclick="window.location.href='logout.php'">
+    Logout
+</button>
     </div>
   </div>
 </nav>
@@ -65,7 +82,7 @@ $totalRows = mysqli_fetch_assoc($countResult)['total'];
 $totalPages = ceil($totalRows / $limit);
 
 // Andmete päring piiranguga
-$paring = "SELECT * FROM cars ORDER BY id DESC LIMIT $limit OFFSET $offset";
+$paring = "SELECT * FROM cars ORDER BY id LIMIT $limit OFFSET $offset";
 $valjund = mysqli_query($yhendus, $paring);
 ?>
 
