@@ -1,10 +1,9 @@
 <?php include("config.php");
 
-$hashed_password = password_hash("admin", PASSWORD_DEFAULT);
+// $hashed_password = password_hash("admin", PASSWORD_DEFAULT);
 
 session_start();
-
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+if ($_SESSION['role'] !== "admin") {
     header("Location: login.php");
     exit();
 }
