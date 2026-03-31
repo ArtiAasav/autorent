@@ -1,7 +1,4 @@
 <?php include("config.php");
-
-// $hashed_password = password_hash("admin", PASSWORD_DEFAULT);
-
 session_start();
 if ($_SESSION['role'] !== "admin") {
     header("Location: login.php");
@@ -40,8 +37,7 @@ if ($_SESSION['role'] !== "admin") {
           <a class="nav-link" href="#">Kasutajad</a>
         </li>
       </ul>
-      <span class="me-3 text-success fw-semibold">
-    <i class="bi bi-shield-lock"></i> Admin sisse logitud
+      <span class="me-3 text-success fw-semibold"> Admin sisse logitud
 </span>
 
 <button class="btn btn-danger" onclick="window.location.href='logout.php'">

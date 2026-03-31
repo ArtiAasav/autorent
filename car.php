@@ -1,4 +1,6 @@
-<?php include("config.php");?>
+<?php include("config.php");
+session_start();
+?>
 
 <!doctype html>
 <html lang="et">
@@ -6,7 +8,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Auto detail</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body class="bg-light">
 
@@ -69,8 +72,20 @@ $rida = mysqli_fetch_row($valjund);
 
           <h4 class="mb-3"><?php echo $rida[5]?> € / päev</h4>
 
-          <button class="btn btn-dark w-100">Rendi</button>
-
+          <?php
+          $role = 'user';
+          if(isset($_SESSION[$role])){
+              $val = $_SESSION['user'];
+          
+          if ($_SESSION['role'] == "user") {
+            echo"hakka rentima";   
+          } else {
+            ?>
+            <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Rentimiseks loo kasutaja</button>
+            <?php
+          }
+          }
+          ?>
         </div>
       </div>
 

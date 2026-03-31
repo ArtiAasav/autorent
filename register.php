@@ -1,33 +1,4 @@
-<?php
-include("config.php");
-session_start();
-
-if(isset($_POST['email']) && isset($_POST['password'])){
-
-
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-$paring = "SELECT password_hash, role FROM users WHERE email='$email'";
-
-$result = mysqli_query($yhendus, $paring);
-$rida = mysqli_fetch_assoc($result);
-
-if ($rida && password_verify($password, $rida['password_hash'])) {
-    echo "OK";
-    $_SESSION['email'] = $email;
-    $_SESSION['role'] = $rida['role'];
-    if ($rida['role']='admin') {
-      header("Location: admin.php");
-    } else {
-      header("Location: index.php");
-    }
-    
-} else {
-    echo "Viga";
-}
-}
-?>
+<?php include("config.php");?>
 
 <style>.gradient-custom-2 {
 /* fallback for old browsers */
@@ -80,10 +51,10 @@ border-bottom-right-radius: .3rem;
 
                 <form method="post">
 
-                  <p>Logi sisse</p>
+                  <p>Loo kasutaja</p>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" name="email" class="form-control" placeholder="email address" value="itkeenjus@gmail.com" />
+                    <input type="email" name="email" class="form-control" placeholder="email address"/>
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
@@ -91,7 +62,7 @@ border-bottom-right-radius: .3rem;
                   </div>
 
                   <div class="text-center pt-1 mb-1 pb-1">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Logi sisse</button>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Registreeri</button>
                   </div>
 
                     <div class="text-center pt-1 mb-2 mx-5 px-5">
@@ -114,12 +85,8 @@ border-bottom-right-radius: .3rem;
   </div>
 </section>
 
-<!-- <form method="post">
-    <input type="email" name="email" placeholder="email" value="itkeenjus@gmail.com"><br>
-    <input type="password" name="password" placeholder="Parool">
-    <button type="submit">Logi sisse</button>
-</form> -->
-<!-- <a href="index.php" class="back-button">Tagasi avalehele</a> -->
+
+
 
 </body>
 </html>

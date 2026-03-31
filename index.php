@@ -48,6 +48,7 @@
         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
       </form>
       <button class="btn btn-success ms-5" onclick="window.location.href='admin.php'">Login</button>
+      <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Registreeri</button>
     </div>
   </div>
 </nav>
@@ -134,6 +135,7 @@ while($rida = mysqli_fetch_row($valjund)){
 </nav>
 <!-- leheküljenumrbid -->
 </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
