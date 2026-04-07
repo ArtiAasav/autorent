@@ -1,4 +1,37 @@
-<?php include("config.php");?>
+<?php include("config.php");
+session_start();
+
+if(isset($_POST['email']) && isset($_POST['password'])){
+
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+$paring = "SELECT password_hash, role FROM users WHERE email='$email'";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $result = mysqli_query($yhendus, $paring);
+    $rida = mysqli_fetch_assoc($result);
+
+    if ($rida && password_verify($password, $rida['password_hash'])) {
+    echo "OK";
+    $_SESSION['email'] = $email;
+    $_SESSION['role'] = $rida['role'];
+    if ($rida['role']='user') {
+      header("Location: index.php");
+    } else {
+      header("Location: index.php");
+    }
+    
+} else {
+    echo "Viga";
+}
+
+    }
+}
+?>
 
 <style>.gradient-custom-2 {
 /* fallback for old browsers */
@@ -54,7 +87,7 @@ border-bottom-right-radius: .3rem;
                   <p>Loo kasutaja</p>
 
                   <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" name="email" class="form-control" placeholder="email address"/>
+                    <input type="email" name="email" class="form-control" placeholder="email address" value="tavakasutaja@gmail.com"/>
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
@@ -62,7 +95,7 @@ border-bottom-right-radius: .3rem;
                   </div>
 
                   <div class="text-center pt-1 mb-1 pb-1">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Registreeri</button>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" href="index.php">Registreeri</button>
                   </div>
 
                     <div class="text-center pt-1 mb-2 mx-5 px-5">

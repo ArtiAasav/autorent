@@ -48,6 +48,7 @@
         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
       </form>
       <button class="btn btn-success ms-5" onclick="window.location.href='admin.php'">Login</button>
+      <button class="btn btn-success ms-1" onclick="window.location.href='logout.php'">Log out</button>
       <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Registreeri</button>
     </div>
   </div>

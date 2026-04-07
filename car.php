@@ -79,10 +79,11 @@ $rida = mysqli_fetch_row($valjund);
           
           if ($_SESSION['role'] == "user") {
             echo"hakka rentima";   
-          } else {
             ?>
             <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Rentimiseks loo kasutaja</button>
             <?php
+          } else {
+              echo"ära huia";
           }
           }
           ?>
