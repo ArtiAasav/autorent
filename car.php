@@ -73,18 +73,16 @@ $rida = mysqli_fetch_row($valjund);
           <h4 class="mb-3"><?php echo $rida[5]?> € / päev</h4>
 
           <?php
-          $role = 'user';
-          if(isset($_SESSION[$role])){
-              $val = $_SESSION['user'];
-          
-          if ($_SESSION['role'] == "user") {
-            echo"hakka rentima";   
+          // print_r($_SESSION['role']);  
+  
+          if ($_SESSION['role'] == "user") { 
             ?>
-            <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Rentimiseks loo kasutaja</button>
+            <input class="my-3" type="date" name="date-start"/>
+            <input class="my-3" type="date" name="date-end"/><br>
+            <button class="btn btn-primary ms-2">Rendi</button>
             <?php
           } else {
               echo"ära huia";
-          }
           }
           ?>
         </div>
