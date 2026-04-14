@@ -73,17 +73,41 @@ $rida = mysqli_fetch_row($valjund);
           <h4 class="mb-3"><?php echo $rida[5]?> € / päev</h4>
 
           <?php
-          // print_r($_SESSION['role']);  
-  
           if ($_SESSION['role'] == "user") { 
             ?>
+
+            <form method="GET">
+            <input type="text" name="car_id" value="<?php echo $rida[0]?>">
             <input class="my-3" type="date" name="date-start"/>
-            <input class="my-3" type="date" name="date-end"/><br>
-            <button class="btn btn-primary ms-2">Rendi</button>
+            <input class="my-3" type="date" name="date-end"/>
+            <button class="btn btn-primary ms-2" type="submit" name="rent">Arvuta</button><br>
+            </form>
+            <form>
+            <input type="number" name="total" value="<?php echo $hind; ?>">
+            <button class="btn btn-primary ms-2" type="submit" name="rent-auto">Rendi</button><br></form>
             <?php
-          } else {
-              echo"ära huia";
+            if (isset($_GET['rent'])) {
+                $start = strtotime($_GET['date-start']);
+                $end = strtotime($_GET['date-end']);
+
+                $days = ($end - $start) / 86400;
+
+                if ($days <= 0) {
+                    echo "Vale kuupäev!";
+                } else {
+                    $total = $days * $rida[5];
+                    echo "Hind: $total € ($days päeva)";
+                    if (isset($_GET['rent-auto'])) {
+                    var_dump("juhuu");
           }
+                }
+            }
+          } else {
+            ?>
+             <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Rentimiseks registreeri</button>
+             <?php
+          }
+         
           ?>
         </div>
       </div>
