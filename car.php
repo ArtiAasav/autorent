@@ -82,10 +82,9 @@ $rida = mysqli_fetch_row($valjund);
             <input class="my-3" type="date" name="date-end"/>
             <button class="btn btn-primary ms-2" type="submit" name="rent">Arvuta</button><br>
             </form>
-            <form>
-            <input type="number" name="total" value="<?php echo $hind; ?>">
-            <button class="btn btn-primary ms-2" type="submit" name="rent-auto">Rendi</button><br></form>
+            
             <?php
+            $hind = 0;
             if (isset($_GET['rent'])) {
                 $start = strtotime($_GET['date-start']);
                 $end = strtotime($_GET['date-end']);
@@ -97,9 +96,7 @@ $rida = mysqli_fetch_row($valjund);
                 } else {
                     $total = $days * $rida[5];
                     echo "Hind: $total € ($days päeva)";
-                    if (isset($_GET['rent-auto'])) {
-                    var_dump("juhuu");
-          }
+                    $hind = $total;
                 }
             }
           } else {
@@ -107,7 +104,21 @@ $rida = mysqli_fetch_row($valjund);
              <button class="btn btn-primary ms-1" onclick="window.location.href='register.php'">Rentimiseks registreeri</button>
              <?php
           }
-         
+             if ($hind>0) {
+              echo '<form>
+            <input type="number" name="total" value="<?php echo $hind; ?>">
+            <button class="btn btn-primary ms-2" type="submit" name="rent-auto">Rendi</button><br></form>';                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            ?>
+            <form method="POST">
+            <input type="hidden" name="car_id" value="<?php echo $rida[0]; ?>">
+            <input type="hidden" name="start" value="<?php echo $start; ?>">
+            <input type="hidden" name="end" value="<?php echo $end; ?>">
+            <input type="hidden" name="total" value="<?php echo $hind; ?>">
+
+            <button class="btn btn-primary ms-2" type="submit" name="rent-auto">Rendi</button><br>
+        </form>
+        <?php          
+          }
           ?>
         </div>
       </div>
