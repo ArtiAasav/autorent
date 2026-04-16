@@ -1,5 +1,22 @@
 <?php include("config.php");
 session_start();
+if (isset($_POST['rent-auto'])) {
+
+    $car_id = $_POST['car_id'];
+    $start = $_POST['start'];
+    $end = $_POST['end'];
+    $total = $_POST['total'];
+    $user_id = $_SESSION['user_id'];
+
+    $paring = "INSERT INTO reservations (car_id, user_id, start_date, end_date, total_price)
+              VALUES ('$car_id', '$user_id', '$start', '$end', '$total')";
+
+    if (mysqli_query($yhendus, $paring)) {
+        echo "<div class='alert alert-success'>Auto edukalt renditud!</div>";
+    } else {
+        echo "<div class='alert alert-danger'>Viga: " . mysqli_error($yhendus) . "</div>";
+    }
+}
 ?>
 
 <!doctype html>
@@ -105,9 +122,6 @@ $rida = mysqli_fetch_row($valjund);
              <?php
           }
              if ($hind>0) {
-              echo '<form>
-            <input type="number" name="total" value="<?php echo $hind; ?>">
-            <button class="btn btn-primary ms-2" type="submit" name="rent-auto">Rendi</button><br></form>';                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             ?>
             <form method="POST">
             <input type="hidden" name="car_id" value="<?php echo $rida[0]; ?>">

@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($rida && password_verify($password, $rida['password_hash'])) {
     echo "OK";
+    $user_id = $_SESSION['user_id'];
     $_SESSION['email'] = $email;
     $_SESSION['role'] = $rida['role'];
     if ($rida['role']='user') {
