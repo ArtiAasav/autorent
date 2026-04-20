@@ -1,12 +1,11 @@
 <?php include("config.php");
 session_start();
-
 if(isset($_POST['email']) && isset($_POST['password'])){
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$paring = "SELECT password_hash, role FROM users WHERE email='$email'";
+$paring = "SELECT id, password_hash, role FROM users WHERE email='$email'";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -17,10 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($rida && password_verify($password, $rida['password_hash'])) {
     echo "OK";
-    $user_id = $_SESSION['user_id'];
+    $_SESSION['user_id'] = $rida['id'];
     $_SESSION['email'] = $email;
     $_SESSION['role'] = $rida['role'];
-    if ($rida['role']='user') {
+    if ($rida['role'] == 'user') {
       header("Location: index.php");
     } else {
       header("Location: index.php");

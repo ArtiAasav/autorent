@@ -8,13 +8,33 @@ if (isset($_POST['rent-auto'])) {
     $total = $_POST['total'];
     $user_id = $_SESSION['user_id'];
 
-    $paring = "INSERT INTO reservations (car_id, user_id, start_date, end_date, total_price)
-              VALUES ('$car_id', '$user_id', '$start', '$end', '$total')";
-
-    if (mysqli_query($yhendus, $paring)) {
-        echo "<div class='alert alert-success'>Auto edukalt renditud!</div>";
+    if ($start > $end) {
+        echo "<div class='alert alert-danger'>Vale kuupäev!</div>";
     } else {
-        echo "<div class='alert alert-danger'>Viga: " . mysqli_error($yhendus) . "</div>";
+
+        $kontroll = "SELECT * FROM reservations 
+                  WHERE car_id='$car_id' 
+                  AND status='renditud'
+                  AND ('$start' <= end_date) 
+                  AND ('$end' >= start_date)";
+
+        $tulemus = mysqli_query($yhendus, $kontroll);
+
+        if (mysqli_num_rows($tulemus) > 0) {
+            echo "<div class='alert alert-danger'>See auto on juba sellel ajal broneeritud!</div>";
+        } else {
+
+            $paring = "INSERT INTO reservations (car_id, user_id, start_date, end_date, total_price, status)
+                       VALUES ('$car_id', '$user_id', '$start', '$end', '$total', 'renditud')";
+
+            if (mysqli_query($yhendus, $paring)) {
+               $update_car = "UPDATE cars SET status='renditud' WHERE id='$car_id'";
+               mysqli_query($yhendus, $update_car);
+                echo "<div class='alert alert-success'>Auto edukalt renditud!</div>";
+            } else {
+                echo "<div class='alert alert-danger'>Viga: " . mysqli_error($yhendus) . "</div>";
+            }
+        }
     }
 }
 ?>
@@ -103,10 +123,10 @@ $rida = mysqli_fetch_row($valjund);
             <?php
             $hind = 0;
             if (isset($_GET['rent'])) {
-                $start = strtotime($_GET['date-start']);
-                $end = strtotime($_GET['date-end']);
+                $start = $_GET['date-start'];
+                $end = $_GET['date-end'];
 
-                $days = ($end - $start) / 86400;
+                $days = (strtotime($end) - strtotime($start)) / 86400;
 
                 if ($days <= 0) {
                     echo "Vale kuupäev!";
